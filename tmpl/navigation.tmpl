@@ -2,10 +2,17 @@
 var self = this;
 ?>
 <div class="navigation">
-    <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
+
+    <div class="header">
+        <?js if (env.conf.templates.logo) { ?>
+        <img class="logo" src="<?js= env.conf.templates.logo ?>"></img>
+        <?js } ?>
+
+        <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
+    </div>
 
     <div class="search">
-        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search">
     </div>
     <ul class="list">
     <?js
@@ -22,10 +29,10 @@ var self = this;
             <?js
             if (item.members.length) {
             ?>
-            <span class="subtitle">Members</span>
-            <?js
-                item.members.forEach(function (v) {
-            ?>
+                <span class="subtitle">Members</span>
+                <?js
+                    item.members.forEach(function (v) {
+                ?>
                 <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js
                 });
@@ -36,10 +43,10 @@ var self = this;
             <?js
             if (item.typedefs.length) {
             ?>
-            <span class="subtitle">Typedefs</span>
-            <?js
-                item.typedefs.forEach(function (v) {
-            ?>
+                <span class="subtitle">Typedefs</span>
+                <?js
+                    item.typedefs.forEach(function (v) {
+                ?>
                 <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js
                 });
@@ -50,11 +57,11 @@ var self = this;
             <?js
             if (item.methods.length) {
             ?>
-            <span class="subtitle">Methods</span>
-            <?js
+                <span class="subtitle">Methods</span>
+                <?js
 
-                item.methods.forEach(function (v) {
-            ?>
+                    item.methods.forEach(function (v) {
+                ?>
                 <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js
                 });
@@ -65,10 +72,10 @@ var self = this;
             <?js
             if (item.events.length) {
             ?>
-            <span class="subtitle">Events</span>
-            <?js
-                item.events.forEach(function (v) {
-            ?>
+                <span class="subtitle">Events</span>
+                <?js
+                    item.events.forEach(function (v) {
+                ?>
                 <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js
                 });

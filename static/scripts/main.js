@@ -1,4 +1,57 @@
 $(function () {
+    // On load
+    function onHashChange() {
+        var hash = window.location.hash;
+        if (hash && hash.length > 1) {
+            hash = hash.substring(1, hash.length);
+
+            // Get each item from the nav
+            var items = document.getElementsByClassName('item');
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+
+                // Go through each li in that item (methods, etc)
+                var subItems = item.getElementsByTagName('li');
+                for (var j = 0; j < subItems.length; j++) {
+                    var subItem = subItems[j];
+                    subItem.classList.remove('selected');
+
+                    // Check to see if this is the new hash
+                    var datasetHash = subItem.dataset.name.split('#')[1];
+                    if (datasetHash === hash) {
+                        subItem.classList.add('selected');
+                    }
+                }
+            }
+        }
+    };
+
+    // Check for compatibility
+    if ("onhashchange" in window) {
+        $(window).bind('hashchange', onHashChange);
+    }
+
+    // On document ready
+    $(document).ready(function() {
+        onHashChange();
+
+        // Select the proper item in the navbar
+        var path = window.location.pathname;
+        var curFile = path.substring(path.lastIndexOf('/') + 1, path.length);
+        var curFileNoExt = curFile.substring(0, curFile.lastIndexOf('.'));
+
+        var items = document.getElementsByClassName('item');
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            item.classList.remove('selected');
+
+            // Check to see if this is the new hash
+            if (item.dataset.name === curFileNoExt) {
+                item.classList.add('selected');
+            }
+        }
+    });
+
     // Search Items
     $('#search').on('keyup', function (e) {
         var value = $(this).val();

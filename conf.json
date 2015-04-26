@@ -4,6 +4,7 @@
 	},
 	"plugins": ["plugins/markdown"],
 	"templates": {
+		"logo": "http://i.imgur.com/UMgAjld.png",
 		"cleverLinks": true,
 		"monospaceLinks": true,
 		"default": {
