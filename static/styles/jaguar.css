@@ -25,50 +25,85 @@ li {
 .navigation {
   position: fixed;
   float: left;
-  width: 250px;
+  width: 275px;
   height: 100%;
-  background-color: #1a1a1a;
+  background-color: #343f4c;
+  font-family: Helvetica;
+  font-weight: 200;
 }
-.navigation .applicationName {
+.navigation .header {
+  position: relative;
+  background-color: #222c39;
+  padding: 0 20px;
+}
+.navigation .header .logo {
+  position: absolute;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+}
+.navigation .header .applicationName {
   margin: 0;
-  margin-top: 15px;
-  padding: 10px 15px;
-  font: bold 1.25em Helvetica;
+  padding: 15px 15px 15px 42px;
+  font: 22px Helvetica;
   color: #fff;
 }
-.navigation .applicationName a {
+.navigation .header .applicationName a {
   color: #fff;
 }
 .navigation .search {
   padding: 10px 15px;
 }
 .navigation .search input {
-  background-color: #333;
+  background-color: #222c39;
   color: #fff;
-  border-color: #555;
+  border: none;
+  border-radius: 45px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 200;
+  padding: 0 26px;
 }
 .navigation .list {
-  padding: 10px 15px 0 15px;
+  padding: 10px 0 0 0;
   position: relative;
   overflow: auto;
   width: 100%;
+  font-weight: 200;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .navigation li.item {
+  position: relative;
+  padding: 40px 15px 0 20px;
   margin-bottom: 8px;
   padding-bottom: 8px;
   border-bottom: 1px solid #333;
+  overflow: hidden;
 }
 .navigation li.item a {
-  color: #bbb;
+  color: #e8e8e8;
 }
 .navigation li.item a:hover {
   color: #fff;
 }
 .navigation li.item .title {
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: block;
-  font-size: 0.8em;
+  font-size: 18px;
+  line-height: 40px;
+  color: #e8e8e8;
+  padding-left: 14px;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 .navigation li.item .title a {
   color: #e1e1e1;
@@ -79,29 +114,84 @@ li {
 .navigation li.item .title .static {
   display: block;
   border-radius: 3px;
-  background-color: #779c34;
-  color: #000;
-  font-size: 0.7em;
-  padding: 2px 4px;
+  background-color: #7ca828;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 45px;
+  height: 21px;
+  line-height: 18px;
   float: right;
+  right: 18px;
+  top: 10px;
+  position: relative;
 }
 .navigation li.item .subtitle {
   margin-top: 10px;
-  font: bold 0.65em Helvetica;
-  color: #779c34;
+  font: 400 16px Helvetica;
+  color: #0087e5;
   display: block;
 }
+.navigation li.item ul {
+  font-size: 14px;
+}
 .navigation li.item ul > li {
-  font-size: 0.7em;
-  padding-left: 8px;
+  position: relative;
+  margin-left: 8px;
+  padding-left: 15px;
   margin-top: 2px;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+.navigation li.item ul > li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: -1px;
+  border-left: 1px solid #656c75;
+}
+.navigation li.item ul > li.selected:after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 2px;
+  background-color: #edcf07;
+  width: 13px;
+  height: 13px;
+  border-radius: 45px;
+}
+.navigation li.item ul > span {
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 .navigation li.item .itemMembers {
   display: none;
 }
+.navigation li.item.selected {
+  background-color: #222c39;
+}
+.navigation li.item.selected:after {
+  content: '';
+  position: absolute;
+  right: -23px;
+  top: 6px;
+  background-color: #ffffff;
+  width: 28px;
+  height: 28px;
+  transform: rotate(45deg);
+}
+.navigation li.item.selected .title {
+  background-color: #1193ef;
+  border-left: 6px solid #0a6eb5;
+}
 .main {
   padding: 20px 20px;
-  margin-left: 250px;
+  margin-left: 275px;
 }
 .main .page-title {
   display: none;
@@ -157,7 +247,7 @@ li {
 .main span.static {
   display: inline-block;
   border-radius: 3px;
-  background-color: #779c34 !important;
+  background-color: #737373 !important;
   color: #fff;
   font-size: 0.7em;
   padding: 2px 4px;
@@ -181,7 +271,7 @@ li {
 .main .subsection-title {
   font-size: 14px;
   margin-top: 30px;
-  color: #779c34;
+  color: #737373;
 }
 .main .description {
   margin-top: 10px;
