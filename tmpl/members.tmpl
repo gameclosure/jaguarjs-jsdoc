@@ -18,17 +18,30 @@ if (data.type && data.type.names) {
     <p class="summary"><?js= summary ?></p>
     <?js } ?>
 </dt>
-<dd>
+<dd class="folded">
     <?js if (data.description) { ?>
     <div class="description">
         <?js= data.description ?>
     </div>
     <?js } ?>
 
-    <?js= this.partial('details.tmpl', data) ?>
+    <?js
+    var detailsContents = this.partial('details.tmpl', data);
+    var hasExamples = data.examples && examples.length;
 
-    <?js if (data.examples && examples.length) { ?>
-        <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
-        <?js= this.partial('examples.tmpl', examples) ?>
+    if (/\S/.test(detailsContents) || hasExamples) {
+    ?>
+    <div class="expandable folded">
+        <?js= detailsContents ?>
+
+        <?js if (hasExamples) { ?>
+            <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
+            <?js= this.partial('examples.tmpl', examples) ?>
+        <?js } ?>
+    </div>
+
+    <div class="expandable-toggle">
+        <i class="fa"></i>
+    </div>
     <?js } ?>
 </dd>
