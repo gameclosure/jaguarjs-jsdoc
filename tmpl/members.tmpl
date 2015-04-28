@@ -29,7 +29,10 @@ if (data.type && data.type.names) {
     var detailsContents = this.partial('details.tmpl', data);
     var hasExamples = data.examples && examples.length;
 
-    if (/\S/.test(detailsContents) || hasExamples) {
+    // Use regex to make sure there are actually contensts inside of "<dl ...>   </dl>"
+    // NOTE: cannot have any '?' followed by '>', otherwise we will exit js parsing :)
+    var re = /<dl.*?[>][\s\S]*?(\S)[\s\S]*?<\/dl>/;
+    if (re.test(detailsContents) || hasExamples) {
     ?>
     <div class="expandable folded">
         <?js= detailsContents ?>
