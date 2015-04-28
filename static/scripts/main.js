@@ -52,6 +52,12 @@ $(function () {
         }
     });
 
+    // Expand all the folded regions
+    $('.expandable-toggle').on('click', function(e) {
+        var self = $(e.currentTarget);
+        self.parent().toggleClass('folded');
+    });
+
     // Search Items
     $('#search').on('keyup', function (e) {
         var value = $(this).val();

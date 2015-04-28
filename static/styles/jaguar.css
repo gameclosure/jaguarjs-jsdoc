@@ -222,6 +222,34 @@ li {
 .main dd {
   font-size: 12px;
 }
+.main dd .expandable-toggle {
+  width: 100%;
+  text-align: center;
+  padding: 0 10px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.main dd .expandable-toggle i {
+  line-height: 25px;
+  font-size: 28px;
+  color: #999;
+  width: 50%;
+  cursor: pointer;
+}
+.main dd .expandable-toggle i:before {
+  content: '\f106';
+}
+.main dd .expandable {
+  overflow: hidden;
+}
+.main dd.folded .expandable {
+  max-height: 0;
+}
+.main dd.folded .expandable-toggle i:before {
+  content: '\f107';
+}
 .main h4.name span.type-signature {
   display: inline-block;
   border-radius: 3px;

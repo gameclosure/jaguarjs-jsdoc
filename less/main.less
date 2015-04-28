@@ -37,6 +37,38 @@
 
     dd {
         font-size: 12px;
+
+        .expandable-toggle {
+            width: 100%;
+            text-align: center;
+            padding: 0 10px;
+            .user-select(none);
+
+            i {
+                line-height: 25px;
+                font-size: 28px;
+                color: #999;
+                width: 50%;
+                cursor: pointer;
+
+                &:before {
+                    content: '\f106';
+                }
+            }
+        }
+
+        .expandable {
+            overflow: hidden;
+        }
+
+        &.folded {
+            .expandable {
+                max-height: 0;
+            }
+            .expandable-toggle i:before {
+                content: '\f107';
+            }
+        }
     }
 
     h4.name {

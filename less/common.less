@@ -23,3 +23,10 @@
 .font-description () {
     font-family: "freight-text-pro",Georgia,Cambria,"Times New Roman",Times,serif
 }
+
+.user-select(@type) {
+    -moz-user-select: @type;
+    -webkit-user-select: @type;
+    -ms-user-select: @type;
+    user-select: @type;
+}
