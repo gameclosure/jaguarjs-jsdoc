@@ -276,8 +276,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     // doesn't try to hand them out later
     var indexUrl = helper.getUniqueFilename('index');
     // don't call registerLink() on this one! 'index' is also a valid longname
-    var metainfoUrl = 'metainfo.json';
-    helper.registerLink('metainfo.json', metainfoUrl);
+    var metadataUrl = 'metadata.json';
+    helper.registerLink('metadata.json', metadataUrl);
 
     var globalUrl = helper.getUniqueFilename('global');
     helper.registerLink('global', globalUrl);
@@ -493,7 +493,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     }
 
     // Make the metadata file //
-    var outpath = path.join(outdir, metainfoUrl);
+    var outpath = path.join(outdir, metadataUrl);
 
     // TODO: This metadata is mostly useless information, could be better
     var metadata = {
