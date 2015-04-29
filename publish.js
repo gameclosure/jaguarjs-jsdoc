@@ -276,6 +276,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     // doesn't try to hand them out later
     var indexUrl = helper.getUniqueFilename('index');
     // don't call registerLink() on this one! 'index' is also a valid longname
+    var metainfoUrl = 'metainfo.json';
+    helper.registerLink('metainfo.json', metainfoUrl);
 
     var globalUrl = helper.getUniqueFilename('global');
     helper.registerLink('global', globalUrl);
@@ -489,6 +491,32 @@ exports.publish = function(taffyData, opts, tutorials) {
             }
         }
     }
+
+    // Make the metadata file //
+    var outpath = path.join(outdir, metainfoUrl);
+
+    // TODO: This metadata is mostly useless information, could be better
+    var metadata = {
+        _: opts._,
+        conf: conf,
+        code: {
+            classes: {},
+            modules: {},
+            namespaces: {},
+            mixins: {},
+            externals: {}
+        }
+    };
+    classes().each(function (rec) { metadata.code.classes[rec.name] = rec.description || ''; });
+    modules().each(function (rec) { metadata.code.modules[rec.name] = rec.description || ''; });
+    namespaces().each(function (rec) { metadata.code.namespaces[rec.name] = rec.description || ''; });
+    mixins().each(function (rec) { metadata.code.mixins[rec.name] = rec.description || ''; });
+    externals().each(function (rec) { metadata.code.externals[rec.name] = rec.description || ''; });
+
+    var metadataString = JSON.stringify(metadata, null, 2);
+
+    fs.writeFileSync(outpath, metadataString, 'utf8');
+    // --------- //
 
     // TODO: move the tutorial functions to templateHelper.js
     function generateTutorial(title, tutorial, filename) {
