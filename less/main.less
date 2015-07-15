@@ -77,6 +77,14 @@
 
             display: inline-block;
             color: #fff;
+
+            &:not(.type) {
+                background-color: @colorReadonlyBubbleBg;
+                margin-right: 4px;
+            }
+            &.type {
+                background-color: @colorUnknownTypeBubbleBg;
+            }
         }
 
         span.type {
