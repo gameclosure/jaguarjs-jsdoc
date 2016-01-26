@@ -18,7 +18,7 @@ if (data.type && data.type.names) {
     <p class="summary"><?js= summary ?></p>
     <?js } ?>
 </dt>
-<dd class="folded">
+<dd class="<?js if (!env.conf.templates.noFolding) { ?>folded<?js } ?>">
     <?js if (data.description) { ?>
     <div class="description">
         <?js= data.description ?>
@@ -29,12 +29,12 @@ if (data.type && data.type.names) {
     var detailsContents = this.partial('details.tmpl', data);
     var hasExamples = data.examples && examples.length;
 
-    // Use regex to make sure there are actually contensts inside of "<dl ...>   </dl>"
+    // Use regex to make sure there are actually contents inside of "<dl ...>   </dl>"
     // NOTE: cannot have any '?' followed by '>', otherwise we will exit js parsing :)
     var re = /<dl.*?[>][\s\S]*?(\S)[\s\S]*?<\/dl>/;
     if (re.test(detailsContents) || hasExamples) {
     ?>
-    <div class="expandable folded">
+    <div class="expandable <?js if (!env.conf.templates.noFolding) { ?>folded<?js } ?>">
         <?js= detailsContents ?>
 
         <?js if (hasExamples) { ?>
@@ -43,8 +43,11 @@ if (data.type && data.type.names) {
         <?js } ?>
     </div>
 
+    <?js if (!env.conf.templates.noFolding) { ?>
     <div class="expandable-toggle">
         <i class="fa"></i>
     </div>
+    <?js } ?>
+
     <?js } ?>
 </dd>
