@@ -24,7 +24,7 @@ $(function () {
                 }
             }
         }
-    };
+    }
 
     // Check for compatibility
     if ("onhashchange" in window) {
@@ -42,11 +42,12 @@ $(function () {
 
         var items = document.getElementsByClassName('item');
         for (var i = 0; i < items.length; i++) {
-            var item = items[i];
+            var item = items[i],
+                name = item.dataset.name.replace(/^module:/, 'module-');
             item.classList.remove('selected');
 
             // Check to see if this is the new hash
-            if (item.dataset.name === curFileNoExt) {
+            if (name === curFileNoExt) {
                 item.classList.add('selected');
             }
         }
@@ -89,7 +90,7 @@ $(function () {
     });
 
     // Show an item related a current documentation automatically
-    var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
+    var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '').replace(/^module-/, 'module:');
     var $currentItem = $('.navigation .item[data-name*="' + filename + '"]:eq(0)');
 
     if ($currentItem.length) {
