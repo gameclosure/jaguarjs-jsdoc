@@ -18,7 +18,7 @@ $(function () {
 
                     // Check to see if this is the new hash
                     var datasetHash = subItem.dataset.name.split('#')[1];
-                    if (datasetHash === hash) {
+                    if (new RegExp(hash + '$').test(subItem.dataset.name)) {
                         subItem.classList.add('selected');
                     }
                 }
@@ -36,18 +36,16 @@ $(function () {
         onHashChange();
 
         // Select the proper item in the navbar
-        var path = window.location.pathname;
-        var curFile = path.substring(path.lastIndexOf('/') + 1, path.length);
-        var curFileNoExt = curFile.substring(0, curFile.lastIndexOf('.'));
+        var longname = $('.page-title').data('longname');
 
         var items = document.getElementsByClassName('item');
         for (var i = 0; i < items.length; i++) {
             var item = items[i],
-                name = item.dataset.name.replace(/^module:/, 'module-');
+                name = item.dataset.name;
             item.classList.remove('selected');
 
             // Check to see if this is the new hash
-            if (name === curFileNoExt) {
+            if (name === longname) {
                 item.classList.add('selected');
             }
         }
@@ -90,8 +88,8 @@ $(function () {
     });
 
     // Show an item related a current documentation automatically
-    var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '').replace(/^module-/, 'module:');
-    var $currentItem = $('.navigation .item[data-name*="' + filename + '"]:eq(0)');
+    var longname = $('.page-title').data('longname');
+    var $currentItem = $('.navigation .item[data-name="' + longname + '"]:eq(0)');
 
     if ($currentItem.length) {
         $currentItem
@@ -99,7 +97,7 @@ $(function () {
             .prependTo('.navigation .list')
             .show()
             .find('.itemMembers')
-                .show();
+            .show();
     }
 
     // Auto resizing on navigation
