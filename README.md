@@ -44,7 +44,8 @@ You can set options for customizing your documentations.
         "description": "",
         "keyword": ""
     },
-    "linenums": true
+    "linenums": true,
+    "noFolding": false
 }
 ```
 

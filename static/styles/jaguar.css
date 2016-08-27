@@ -85,6 +85,7 @@ li {
 }
 .navigation li.item a {
   color: #e8e8e8;
+  white-space: nowrap;
 }
 .navigation li.item a:hover {
   color: #fff;
@@ -189,6 +190,7 @@ li {
 .navigation li.item.selected .title {
   background-color: #1193ef;
   border-left: 6px solid #0a6eb5;
+  height: 40px;
 }
 .main {
   padding: 20px 20px;

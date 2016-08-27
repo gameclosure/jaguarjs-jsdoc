@@ -115,10 +115,11 @@ function getPathFromDoclet(doclet) {
     return filepath;
 }
 
-function generate(title, docs, filename, resolveLinks) {
+function generate(title, docs, filename, longname, resolveLinks) {
     resolveLinks = resolveLinks === false ? false : true;
 
     var docData = {
+        longname: longname,
         filename: filename,
         title: title,
         docs: docs
@@ -154,7 +155,7 @@ function generateSourceFiles(sourceFiles) {
             handle(e);
         }
 
-        generate('Source: ' + sourceFiles[file].shortened, [source], sourceOutfile,
+        generate('Source: ' + sourceFiles[file].shortened, [source], sourceOutfile, '',
             false);
     });
 }
@@ -232,6 +233,32 @@ function buildNav(members) {
         _.each(members.classes, function (v) {
             nav.push({
                 type: 'class',
+                longname: v.longname,
+                name: v.name,
+                members: find({
+                    kind: 'member',
+                    memberof: v.longname
+                }),
+                methods: find({
+                    kind: 'function',
+                    memberof: v.longname
+                }),
+                typedefs: find({
+                    kind: 'typedef',
+                    memberof: v.longname
+                }),
+                events: find({
+                    kind: 'event',
+                    memberof: v.longname
+                })
+            });
+        });
+    }
+
+    if (members.modules.length) {
+        _.each(members.modules, function (v) {
+            nav.push({
+                type: 'module',
                 longname: v.longname,
                 name: v.name,
                 members: find({
@@ -467,27 +494,27 @@ exports.publish = function(taffyData, opts, tutorials) {
         if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
             var myClasses = helper.find(classes, {longname: longname});
             if (myClasses.length) {
-                generate('Class: ' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
+                generate('Class: ' + myClasses[0].name, myClasses, helper.longnameToUrl[longname], longname);
             }
 
             var myModules = helper.find(modules, {longname: longname});
             if (myModules.length) {
-                generate('Module: ' + myModules[0].name, myModules, helper.longnameToUrl[longname]);
+                generate('Module: ' + myModules[0].name, myModules, helper.longnameToUrl[longname], longname);
             }
 
             var myNamespaces = helper.find(namespaces, {longname: longname});
             if (myNamespaces.length) {
-                generate('Namespace: ' + myNamespaces[0].name, myNamespaces, helper.longnameToUrl[longname]);
+                generate('Namespace: ' + myNamespaces[0].name, myNamespaces, helper.longnameToUrl[longname], longname);
             }
 
             var myMixins = helper.find(mixins, {longname: longname});
             if (myMixins.length) {
-                generate('Mixin: ' + myMixins[0].name, myMixins, helper.longnameToUrl[longname]);
+                generate('Mixin: ' + myMixins[0].name, myMixins, helper.longnameToUrl[longname], longname);
             }
 
             var myExternals = helper.find(externals, {longname: longname});
             if (myExternals.length) {
-                generate('External: ' + myExternals[0].name, myExternals, helper.longnameToUrl[longname]);
+                generate('External: ' + myExternals[0].name, myExternals, helper.longnameToUrl[longname], longname);
             }
         }
     }
