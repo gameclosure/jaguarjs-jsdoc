@@ -473,6 +473,23 @@ li {
   margin-bottom: 5px;
   list-style-type: disc;
 }
+.tutorial {
+  max-width: 1024px;
+}
+.tutorial h1 {
+  font-size: 2em;
+}
+.tutorial h2 {
+  margin: 60px 0px 0px 0px;
+}
+.tutorial img {
+  padding: 10px 50px 10px 50px;
+  max-width: 100%;
+  max-height: 700px;
+}
+.tutorial hr {
+  margin: 5px 0px 10px 0px;
+}
 footer {
   margin: 15px 0;
   padding-top: 15px;
