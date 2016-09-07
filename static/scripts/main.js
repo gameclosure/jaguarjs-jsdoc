@@ -70,14 +70,20 @@ $(function () {
             $el.find('li').each(function (i, v) {
                 var $item = $(v);
 
-                if ($item.data('name') && regexp.test($item.data('name'))) {
+                var dataName = $item.data('name');
+                if (dataName && regexp.test(dataName)) {
                     $item.show();
                     $item.closest('.itemMembers').show();
                     $item.closest('.item').show();
                 }
             });
         } else {
-            $el.find('.item, .itemMembers').show();
+            // Search field is empty, reset
+            $el.find('.item').each(function (i, v) {
+                var $item = $(v);
+                $item.show();
+                $item.find('.itemMembers').hide();
+            });
         }
 
         $el.find('.list').scrollTop(0);
