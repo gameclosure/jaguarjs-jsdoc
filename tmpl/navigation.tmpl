@@ -84,5 +84,21 @@ var self = this;
             </ul>
         </li>
     <?js }); ?>
+
+        <?js
+        if (this.tutorials.length) {
+        this.tutorials.forEach(function (tut) {
+        ?>
+        <li class="item" data-name="<?js= tut.longname ?>">
+            <span class="title">
+                <?js= self.tutoriallink(tut.name) ?>
+                <span class="tutorial-badge">tutorial</span>
+            </span>
+        </li>
+        <?js
+        });
+        }
+        ?>
+
     </ul>
 </div>
