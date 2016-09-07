@@ -107,12 +107,17 @@ li {
   user-select: text;
 }
 .navigation li.item .title a {
+  max-width: 186px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #e1e1e1;
 }
 .navigation li.item .title a:hover {
   color: #fff;
 }
-.navigation li.item .title .static {
+.navigation li.item .title .static,
+.navigation li.item .title .tutorial-badge {
   font-family: Helvetica;
   font-weight: 200;
   font-size: 12px;
@@ -121,12 +126,17 @@ li {
   height: 21px;
   line-height: 18px;
   display: block;
-  background-color: #7ca828;
-  color: #ffffff;
+  position: absolute;
   float: right;
   right: 18px;
   top: 10px;
-  position: relative;
+  max-width: 50px;
+  background-color: #7ca828;
+  color: #ffffff;
+}
+.navigation li.item .title .tutorial-badge {
+  background-color: #287fa8;
+  color: #ffffff;
 }
 .navigation li.item .subtitle {
   margin-top: 10px;
@@ -474,6 +484,23 @@ li {
 .main article ul > li {
   margin-bottom: 5px;
   list-style-type: disc;
+}
+.tutorial {
+  max-width: 1024px;
+}
+.tutorial h1 {
+  font-size: 2em;
+}
+.tutorial h2 {
+  margin: 60px 0px 0px 0px;
+}
+.tutorial img {
+  padding: 10px 50px 10px 50px;
+  max-width: 100%;
+  max-height: 700px;
+}
+.tutorial hr {
+  margin: 5px 0px 10px 0px;
 }
 footer {
   margin: 15px 0;

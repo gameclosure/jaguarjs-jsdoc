@@ -78,6 +78,8 @@
         border-bottom: 1px solid #333;
         overflow: hidden;
 
+        @navPaddingLeft: 14px;
+
         a {
             color: @naviSelectedTitleColor;
             white-space: nowrap;
@@ -92,6 +94,11 @@
             left: 0;
             right: 0;
             a {
+                max-width: @navWidth - @navBadgeWidth - @navPaddingLeft - @navBadeMargin;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
                 color: #e1e1e1;
                 &:hover {
                     color: #fff;
@@ -101,20 +108,27 @@
             font-size: @naviTitleSize;
             line-height: 40px;
             color: @naviSelectedTitleColor;
-            padding-left: 14px;
+            padding-left: @navPaddingLeft;
 
             .user-select(text);
 
-            .static {
+            .static, .tutorial-badge {
                 .info-bubble();
                 display: block;
-                background-color: @colorStaticBubbleBg;
-                color: @colorStaticBubble;
 
+                position: absolute;
                 float: right;
                 right: 18px;
                 top: 10px;
-                position: relative;
+                max-width: @navBadgeWidth;
+
+                background-color: @colorStaticBubbleBg;
+                color: @colorStaticBubble;
+            }
+
+            .tutorial-badge {
+                background-color: @colorTutorialBubbleBg;
+                color: @colorTutorialBubble;
             }
         }
 

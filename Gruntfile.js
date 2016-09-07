@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     var path = require('path');
     var DEMO_PATH = 'demo/dist';
     var DEMO_SAMPLE_PATH = 'demo/sample';
-    
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
             demo: {
                 src: [
                     DEMO_SAMPLE_PATH + '/**/*.js',
-                    
+
                     // You can add README.md file for index page at documentations.
                     'README.md'
                 ],
